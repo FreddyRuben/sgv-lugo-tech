@@ -1,0 +1,23 @@
+
+{
+    "brand":{
+        "id":{
+            "$type": "ObjectId"
+            },
+        "name": {
+            "$type": "String"
+        }
+    },
+    "product":{
+        "id":{
+            "$type": "ObjectId"
+        },
+        "name":{
+            "$type": "String"
+        },
+        "stock":{
+            "$type": "Number"
+        },
+        "brand":"brand collection reference"
+    }
+}
