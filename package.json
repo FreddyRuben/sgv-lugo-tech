@@ -1,0 +1,11 @@
+{
+  "name": "sgv-lugo-tech",
+  "version": "1.0.0",
+  "description": "Control system and sales administration of the Lugo Technology Shop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Freddy Ruben Franco Lugo",
+  "license": "MIT"
+}
