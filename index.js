@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import morgan from 'morgan';
 
 import routesProducts from './routes/products.routes.js'
 import routesBrands from './routes/brands.routes.js';
@@ -7,7 +8,11 @@ import routesBrands from './routes/brands.routes.js';
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Middlewares
 app.use(express.json());
+app.use(morgan('dev'));
+
+// Import routes
 app.use('/api', routesProducts);
 app.use('/api',routesBrands );
 
