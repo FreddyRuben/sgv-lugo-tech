@@ -4,6 +4,6 @@ import productsController from '../controllers/products.controller.js';
 
 const router = express.Router();
 
-router.get('/products', productsController.getProducts);
+router.post('/save-product', productsController.saveProduct);
 
 export default router;

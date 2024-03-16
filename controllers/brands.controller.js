@@ -1,5 +1,6 @@
 import BrandSchema from '../schemas/Brand.js';
 
+// Save brand
 let saveBrand = async(req, res) => {
     let brand = new BrandSchema();
     brand.name = req.body.name;
@@ -12,11 +13,13 @@ let saveBrand = async(req, res) => {
     }
 }
 
+// Gets all brands
 let getBrands = async(req, res) => {
     let brands = await BrandSchema.find();
     res.status(200).json({"brands":{brands}});
 }
 
+// Gets a specific brand
 let getBrand = async(req, res) => {
 try{
     let { id } = req.params;
@@ -31,26 +34,44 @@ try{
     }
 }
 
+// Updates a specific brand
 let updateBrand = async(req, res) => {
 try{
-    let brand = new BrandSchema();
     let { id } = req.params;
-    brand.name = req.body.name
+    let name = req.body.name
     let exist = await BrandSchema.findById(id);
     if(!exist){
         return res.status(404).json({msg: `element no found ${id}`});
     }else{
-        await brand.findOneAndUpdate({id: id}, {name: brand.name});
-        res.status(200).json({msg: `element updaded`});
+        let updatedBrand = await BrandSchema.findByIdAndUpdate(id, {name: name}, {new: true});
+        res.status(200).json({msg: `element updaded`, data: updatedBrand});
     }
     }catch(err){
         res.status(500).json({msg: `error querying element ${err}`});
     }
 }
 
+// Delete a specific brand
+let deleteBrand = async(req, res) => {
+    try{
+        let { id } = req.params;
+        let exist = await BrandSchema.findById(id);
+        if(!exist){
+            return res.status(404).json({msg: `element not found`});
+        }else{
+            let deletedBrand = await BrandSchema.findByIdAndDelete(id);
+            res.status(200).json({msg: `element deleted succefully`, data: deletedBrand});
+        }
+    }catch(err){
+        res.status(200).json({msg: `error querying element ${err}`});
+    }
+}
+
+// Exports functions
 export default{
     saveBrand,
     getBrands,
     getBrand,
-    updateBrand
+    updateBrand,
+    deleteBrand
 }

@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 
+// Request files
 import routesProducts from './routes/products.routes.js'
 import routesBrands from './routes/brands.routes.js';
 
@@ -14,7 +15,7 @@ app.use(morgan('dev'));
 
 // Import routes
 app.use('/api', routesProducts);
-app.use('/api',routesBrands );
+app.use('/api', routesBrands );
 
 
 // Run server
@@ -24,5 +25,5 @@ app.listen(port, () => {
 
 // Connection with database
 mongoose.connect('mongodb://localhost:27017/sgv')
-    .then (data => {console.log('db is conected')})
-    .catch((error) => console.log('ther is an error connecting with db'));
+    .then (data => console.log('db is conected'))
+    .catch(error => console.log('ther is an error connecting with db'));
